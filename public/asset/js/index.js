@@ -1,17 +1,21 @@
 var socket = io.connect('http://localhost:3000/timetable');
+var table_list = $("#table-list");
+var user_id = table_list.attr('user');
 socket.on('create', function(response){
 	if("string"==typeof response) response = JSON.parse(response);
-	var html = '<tr data-id="'+response.id+'" data-user="'+response.user+'">';
-	html+= '<td contenteditable data-name="date">'+response.text_time+'</td>';
-	html+= '<td contenteditable data-name="content">'+response.content+'</td>';
-	html+= '<td data-name="status">'+response.status+'</td>';
-	html+= '<td class="text-center">';
-	html+= '<a href="/timetable/edit/'+response.id+'" class="btn-edit">Update</a>';
-	html+= '</td>';
-	html+= '<td class="text-center">';
-	html+= '<a href="/timetable/delete/'+response.id+'" class="btn-delete">Delete</a>';
-	html+= '</tr>';
-	$(html).insertAfter('#time-table-create-table');
+	if(response.user==user_id){
+		var html = '<tr data-id="'+response.id+'" data-user="'+response.user+'">';
+		html+= '<td contenteditable data-name="date">'+response.text_time+'</td>';
+		html+= '<td contenteditable data-name="content">'+response.content+'</td>';
+		html+= '<td data-name="status">'+response.status+'</td>';
+		html+= '<td class="text-center">';
+		html+= '<a href="/timetable/edit/'+response.id+'" class="btn-edit">Update</a>';
+		html+= '</td>';
+		html+= '<td class="text-center">';
+		html+= '<a href="/timetable/delete/'+response.id+'" class="btn-delete">Delete</a>';
+		html+= '</tr>';
+		$(html).insertAfter('#time-table-create-table');
+	}
 });
 socket.on('update', function(a){
 	var table = document.getElementById('table-list').querySelector('tbody');

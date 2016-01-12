@@ -6,7 +6,7 @@
 	<div>
 		You have no item. Now <a href="#" id="time-table-create">create an item</a> here?
 	</div>
-	<table class="table table-bordered" id="table-list" style="display:none;">
+	<table class="table table-bordered" id="table-list" style="display:none;" user="{{user}}">
 		<tr>
 			<td style="width:20%;">Date</td>
 			<td style="width:40%;">Content</td>
@@ -24,7 +24,7 @@
 	<div>
 		<a href="#" id="time-table-create">Create an item</a> here?
 	</div>
-	<table class="table table-bordered" id="table-list">
+	<table class="table table-bordered" id="table-list" user="{{user}}">
 		<tr>
 			<td style="width:20%;">Date</td>
 			<td style="width:40%;">Content</td>
