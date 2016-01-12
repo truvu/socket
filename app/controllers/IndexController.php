@@ -2,13 +2,6 @@
 
 class IndexController extends ControllerBase
 {
-	public function setStatus($time){
-		$now = time();
-		if($time==$now) $status = 'in comming';
-		elseif($time<$now) $status = 'on going';
-		else $status = 'passed';
-		return $status;
-	}
     public function indexAction()
     {
     	if(!$this->session->has('uid')){
@@ -21,7 +14,7 @@ class IndexController extends ControllerBase
     			'order' => 'id desc',
     			'limit' => 10
     		));
-    		$this->view->status = $this->setStatus;
+    		$this->view->user = $user;
     		$this->view->list = $list;
     	}
     }
